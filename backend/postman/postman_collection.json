@@ -1,0 +1,279 @@
+{
+  "info": {
+    "name": "Million Backend API",
+    "description": "Complete API testing collection for Million Luxury Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "Get All Properties (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties?pageNumber=1&pageSize=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties"],
+              "query": [
+                {"key": "pageNumber", "value": "1"},
+                {"key": "pageSize", "value": "10"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Filtered Properties - Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/filter?name=villa",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "filter"],
+              "query": [{"key": "name", "value": "villa"}]
+            }
+          }
+        },
+        {
+          "name": "Get Filtered Properties - Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/filter?address=miami",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "filter"],
+              "query": [{"key": "address", "value": "miami"}]
+            }
+          }
+        },
+        {
+          "name": "Get Filtered Properties - Price Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/filter?minPrice=1000000&maxPrice=3000000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "filter"],
+              "query": [
+                {"key": "minPrice", "value": "1000000"},
+                {"key": "maxPrice", "value": "3000000"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Filtered Properties - Combined",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/filter?name=luxury&address=miami&minPrice=2000000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "filter"],
+              "query": [
+                {"key": "name", "value": "luxury"},
+                {"key": "address", "value": "miami"},
+                {"key": "minPrice", "value": "2000000"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Property by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Property",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Luxury Penthouse\",\n  \"address\": \"999 Park Avenue, Miami, FL\",\n  \"price\": 3500000,\n  \"codeInternal\": \"MIA-999\",\n  \"year\": 2024,\n  \"idOwner\": \"{{ownerId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/properties",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties"]
+            }
+          }
+        },
+        {
+          "name": "Update Property",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Luxury Penthouse\",\n  \"price\": 4000000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Property",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Property Status",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "false"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Get Property Images",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}/images",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}", "images"]
+            }
+          }
+        },
+        {
+          "name": "Add Property Image",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file\": \"https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800\",\n  \"enabled\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}/images",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}", "images"]
+            }
+          }
+        },
+        {
+          "name": "Get Property Traces",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}/traces",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}", "traces"]
+            }
+          }
+        },
+        {
+          "name": "Add Property Trace",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateSale\": \"2024-01-15\",\n  \"name\": \"Market Sale\",\n  \"value\": 2500000,\n  \"tax\": 125000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/properties/{{propertyId}}/traces",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "properties", "{{propertyId}}", "traces"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Owners",
+      "item": [
+        {
+          "name": "Get All Owners",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/owners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "owners"]
+            }
+          }
+        },
+        {
+          "name": "Get Owner by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/owners/{{ownerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "owners", "{{ownerId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Owner",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Smith\",\n  \"address\": \"789 Luxury Lane, Miami, FL\",\n  \"photo\": \"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200\",\n  \"birthday\": \"1985-05-20\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/owners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "owners"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:5001",
+      "type": "string"
+    },
+    {
+      "key": "propertyId",
+      "value": "REPLACE_WITH_ACTUAL_ID",
+      "type": "string"
+    },
+    {
+      "key": "ownerId",
+      "value": "REPLACE_WITH_ACTUAL_ID",
+      "type": "string"
+    }
+  ]
+}

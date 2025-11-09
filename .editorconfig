@@ -1,0 +1,54 @@
+
+root = true
+
+
+
+[*]
+
+charset = utf-8
+
+indent_style = space
+
+indent_size = 2
+
+end_of_line = lf
+
+insert_final_newline = true
+
+trim_trailing_whitespace = true
+
+
+
+[*.{cs,csx}]
+
+# Indentation and spacing
+
+indent_size = 4
+
+indent_style = space
+
+csharp_new_line_before_open_brace = all
+
+# Naming conventions
+
+dotnet_naming_rule.interface_should_be_prefixed.symbols = interfaces
+
+dotnet_naming_rule.interface_should_be_prefixed.style = interface_style
+
+dotnet_naming_rule.interface_should_be_prefixed.severity = warning
+
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+
+dotnet_naming_symbols.interfaces.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+
+dotnet_naming_style.interface_style.required_prefix = I
+
+dotnet_naming_style.interface_style.capitalization = pascal_case
+
+
+
+[*.md]
+
+trim_trailing_whitespace = false
+
+

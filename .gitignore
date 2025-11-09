@@ -1,0 +1,111 @@
+
+# ==================================
+
+# Root Level Ignores
+
+# ==================================
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+
+# ==================================
+
+# Backend (.NET) Ignores
+
+# ==================================
+
+# Build results
+backend/**/bin/
+backend/**/obj/
+backend/**/out/
+
+# Visual Studio
+backend/**/.vs/
+backend/**/*.user
+backend/**/*.suo
+backend/**/*.userosscache
+backend/**/*.sln.docstates
+
+# NuGet
+backend/**/*.nupkg
+backend/**/*.snupkg
+backend/**/packages/
+backend/**/.nuget/
+
+# Test Results
+backend/**/TestResults/
+backend/**/*.trx
+backend/**/*.coverage
+
+# ==================================
+
+# Frontend (Next.js) Ignores
+
+# ==================================
+
+# Dependencies
+frontend/node_modules/
+frontend/.pnp/
+frontend/.pnp.js
+frontend/.yarn/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+
+# Testing
+frontend/coverage/
+frontend/.nyc_output/
+
+
+# Misc
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+
+# ==================================
+
+# Documentation
+
+# ==================================
+
+# Keep docs but ignore generated files
+
+docs/**/*.pdf
+docs/**/*.docx
+
+# ==================================
+
+# Database & Data
+
+# ==================================
+
+# MongoDB data (if using local docker volumes)
+
+data/
+*.db
+*.sqlite
+
+# Logs
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+

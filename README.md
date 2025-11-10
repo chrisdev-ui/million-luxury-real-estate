@@ -70,8 +70,6 @@ Million Luxury is a comprehensive real estate management platform that enables u
 
 ## 🚀 Deployment
 
-### Free Tier Deployment (Recommended)
-
 Deploy your application for **FREE** using:
 
 - **Frontend**: [Vercel](https://vercel.com) - Free tier (100GB bandwidth/month)
@@ -80,7 +78,7 @@ Deploy your application for **FREE** using:
 
 **Total Cost: $0/month** 🎉
 
-#### Quick Deploy (15 minutes)
+### Quick Deploy (15 minutes)
 
 1. **Database**: Create MongoDB Atlas M0 cluster
 2. **Backend**: Deploy to Railway from GitHub
@@ -88,18 +86,6 @@ Deploy your application for **FREE** using:
 
 📖 **Full Instructions**: [FREE-DEPLOYMENT.md](FREE-DEPLOYMENT.md)
 ⚡ **Quick Start**: [QUICKSTART-FREE.md](QUICKSTART-FREE.md)
-
-### Alternative: Azure Deployment
-
-For enterprise deployments, Azure configuration is also available:
-
-- **Frontend**: Azure Static Web Apps
-- **Backend**: Azure App Service
-- **Database**: Azure Cosmos DB (MongoDB API)
-
-**Estimated Cost: ~$20-30/month**
-
-📖 **Azure Guide**: [AZURE-QUICKSTART.md](AZURE-QUICKSTART.md)
 
 ## 🏗️ Project Structure
 

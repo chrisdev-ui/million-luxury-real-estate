@@ -3,6 +3,7 @@ using MillionBackend.API.Mapping;
 using MillionBackend.Application.Services;
 using MillionBackend.Core.Repositories;
 using MillionBackend.Infrastructure.Repositories;
+using MillionBackend.Infrastructure.Data;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,7 +64,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var database = scope.ServiceProvider.GetRequiredService<IMongoDatabase>();
-    var indexInitializer = new MillionBackend.Infrastructure.Data.MongoDbIndexInitializer(database);
+    var indexInitializer = new MongoDbIndexInitializer(database);
     await indexInitializer.InitializeIndexesAsync();
 }
 

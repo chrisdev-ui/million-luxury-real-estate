@@ -70,7 +70,7 @@ Million Luxury is a comprehensive real estate management platform that enables u
 ## 🏗️ Project Structure
 
 ```
-MillionTest/
+million-luxury-real-estate/
 ├── backend/                          # .NET 9 Web API
 │   ├── src/
 │   │   ├── MillionBackend.API/      # Controllers, DTOs, Program.cs
@@ -154,8 +154,8 @@ MillionTest/
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd MillionTest
+git clone https://github.com/chrisdev-ui/million-luxury-real-estate.git
+cd million-luxury-real-estate
 ```
 
 ### 2. Backend Setup

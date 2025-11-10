@@ -89,7 +89,6 @@ docs/**/*.docx
 
 # Development helper files (not for version control)
 CLAUDE.md
-git-commit-plan.md
 
 # ==================================
 

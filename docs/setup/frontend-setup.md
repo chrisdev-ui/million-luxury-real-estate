@@ -63,7 +63,7 @@ If you haven't already cloned the repository:
 git clone <repository-url>
 
 # Navigate to the project root
-cd MillionTest
+cd million-luxury-real-estate
 
 # Navigate to the frontend directory
 cd frontend

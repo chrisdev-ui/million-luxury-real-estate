@@ -11,6 +11,7 @@
 - [Running the Application](#running-the-application)
 - [Verification](#verification)
 - [Testing](#testing)
+- [API Testing Tools](#api-testing-tools)
 - [Troubleshooting](#troubleshooting)
 - [Development Workflow](#development-workflow)
 
@@ -62,7 +63,7 @@ Open a terminal and navigate to where you want to store the project:
 git clone <repository-url>
 
 # Navigate to the project root
-cd MillionTest
+cd million-luxury-real-estate
 
 # Navigate to the backend directory
 cd backend
@@ -439,6 +440,69 @@ dotnet test --filter "FullyQualifiedName~PropertyServiceTests"
 
 # Run a specific test method
 dotnet test --filter "FullyQualifiedName~GetPropertyByIdAsync_ValidId_ReturnsProperty"
+```
+
+---
+
+## API Testing Tools
+
+### Postman Collection
+
+The project includes a ready-to-use Postman collection with all API endpoints configured.
+
+**Location:** `backend/postman/postman_collection.json`
+
+**Import to Postman:**
+
+1. Open Postman
+2. Click **Import** button
+3. Select `backend/postman/postman_collection.json`
+4. All endpoints will be available in your Postman workspace
+
+**Available Requests:**
+- GET All Properties (with pagination)
+- GET Property by ID
+- GET Filtered Properties
+- POST Create Property
+- PUT Update Property
+- DELETE Property
+- Owner endpoints
+
+### Database Scripts
+
+Located in `backend/scripts/`:
+
+| Script | Purpose | Records |
+|--------|---------|---------|
+| `seed-data.js` | Light seed data | ~10 properties |
+| `seed-data-heavy.js` | Heavy seed data | 100 properties |
+| `clean-db.js` | Clean/reset database | Removes all data |
+
+**Seed Database:**
+
+```bash
+# Seed with heavy data (100 properties - good for testing pagination)
+docker exec -i mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin < backend/scripts/seed-data-heavy.js
+
+# Seed with light data
+docker exec -i mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin < backend/scripts/seed-data.js
+```
+
+**Clean Database:**
+
+```bash
+docker exec -i mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin < backend/scripts/clean-db.js
+```
+
+**Verify Data:**
+
+```bash
+# Connect to MongoDB
+docker exec -it mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin
+
+# Count properties
+use MillionTestDB
+db.properties.countDocuments()
 ```
 
 ---

@@ -12,7 +12,6 @@
 
 - [Overview](#-overview)
 - [Features](#-features)
-- [Deployment](#-deployment)
 - [Project Structure](#-project-structure)
 - [Tech Stack](#-tech-stack)
 - [Quick Start](#-quick-start)
@@ -35,7 +34,7 @@ Million Luxury is a comprehensive real estate management platform that enables u
 - **Performance** - Optimized with server-side rendering, code splitting, and database indexing
 - **Real-time Filtering** - Debounced search with URL state synchronization
 - **Comprehensive Testing** - 18/18 unit tests passing
-- **Free Deployment** - Deploy to Vercel + Railway + MongoDB Atlas at no cost
+- **CI/CD Pipeline** - Automated testing and build validation
 
 ## ✨ Features
 
@@ -67,25 +66,6 @@ Million Luxury is a comprehensive real estate management platform that enables u
 - ✅ **Mobile-First** - Touch-friendly responsive design
 - ✅ **SEO Optimized** - Server-side rendering with metadata
 - ✅ **Accessibility** - ARIA labels and semantic HTML
-
-## 🚀 Deployment
-
-Deploy your application for **FREE** using:
-
-- **Frontend**: [Vercel](https://vercel.com) - Free tier (100GB bandwidth/month)
-- **Backend**: [Railway.app](https://railway.app) - Free $5/month credit
-- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Free M0 tier (512MB)
-
-**Total Cost: $0/month** 🎉
-
-### Quick Deploy (15 minutes)
-
-1. **Database**: Create MongoDB Atlas M0 cluster
-2. **Backend**: Deploy to Railway from GitHub
-3. **Frontend**: Deploy to Vercel from GitHub
-
-📖 **Full Instructions**: [FREE-DEPLOYMENT.md](FREE-DEPLOYMENT.md)
-⚡ **Quick Start**: [QUICKSTART-FREE.md](QUICKSTART-FREE.md)
 
 ## 🏗️ Project Structure
 
@@ -352,6 +332,61 @@ dotnet test
 - Filtering logic (name, address, price range)
 - Pagination functionality
 - Error handling scenarios
+
+## 🔄 CI/CD Pipeline
+
+The project includes automated CI/CD workflows that run on every push and pull request:
+
+### Workflows
+
+**1. Full Stack CI** (`.github/workflows/ci.yml`)
+- Runs on every push to `main` or `develop`
+- Tests both backend and frontend
+- Provides summary of all checks
+
+**2. Backend CI** (`.github/workflows/backend-ci.yml`)
+- Triggers on backend file changes
+- Runs .NET build
+- Executes all unit tests (18 tests)
+- Publishes test results
+- **Fails the build if tests fail**
+
+**3. Frontend CI** (`.github/workflows/frontend-ci.yml`)
+- Triggers on frontend file changes
+- Runs ESLint
+- Builds Next.js application
+- **Fails the build if linting or build fails**
+
+### Protection Rules
+
+To enforce code quality, configure branch protection rules:
+
+1. Go to: **Settings → Branches → Add rule**
+2. Branch name pattern: `main`
+3. Enable: **Require status checks to pass before merging**
+4. Select: `Backend CI`, `Frontend CI`, `CI Summary`
+
+This ensures:
+- ✅ All tests must pass
+- ✅ Linting must pass
+- ✅ Build must succeed
+- ✅ No broken code reaches main branch
+
+### Local CI Testing
+
+Run the same checks locally before pushing:
+
+```bash
+# Backend: Build + Test
+cd backend
+dotnet build
+dotnet test
+
+# Frontend: Lint + Build
+cd frontend
+npm run lint
+npm run build
+```
 
 ### Frontend Testing
 

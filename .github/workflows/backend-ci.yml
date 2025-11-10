@@ -1,0 +1,70 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'backend/**'
+
+env:
+  DOTNET_VERSION: '9.0.x'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: 📦 Restore dependencies
+      run: dotnet restore
+      working-directory: backend
+
+    - name: 🏗️ Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: backend
+
+    - name: 🧪 Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      working-directory: backend
+
+    - name: 📊 Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Backend Test Results
+        path: backend/**/test-results.trx
+        reporter: dotnet-trx
+        fail-on-error: true
+
+    - name: ✅ Build Summary
+      if: success()
+      run: |
+        echo "### ✅ Backend CI Passed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Build successful" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ All tests passed" >> $GITHUB_STEP_SUMMARY
+
+    - name: ❌ Build Failed
+      if: failure()
+      run: |
+        echo "### ❌ Backend CI Failed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Please check the logs above for details." >> $GITHUB_STEP_SUMMARY
+        exit 1

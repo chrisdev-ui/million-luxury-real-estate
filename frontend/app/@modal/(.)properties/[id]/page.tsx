@@ -26,17 +26,23 @@ function PropertyDetailSkeleton() {
   );
 }
 
-export default async function PropertyDetailModalPage({
+export default function PropertyDetailModalPage({
+  params,
+}: PropertyDetailModalPageProps) {
+  return (
+    <Modal>
+      <Suspense fallback={<PropertyDetailSkeleton />}>
+        <PropertyDetailModalWrapper params={params} />
+      </Suspense>
+    </Modal>
+  );
+}
+
+async function PropertyDetailModalWrapper({
   params,
 }: PropertyDetailModalPageProps) {
   const { id } = await params;
   const promise = getPropertyById(id);
 
-  return (
-    <Modal>
-      <Suspense fallback={<PropertyDetailSkeleton />}>
-        <PropertyDetailModal promise={promise} />
-      </Suspense>
-    </Modal>
-  );
+  return <PropertyDetailModal promise={promise} />;
 }

@@ -22,6 +22,9 @@ export function Modal({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Only render on client-side
+  if (typeof window === "undefined") return null;
+
   return createPortal(
     <Dialog open={open} onOpenChange={onDismiss}>
       <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">

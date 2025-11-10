@@ -128,7 +128,8 @@ public class PropertiesControllerTests
 
         Assert.That(response, Is.Not.Null);
         Assert.That(response!.Success, Is.True);
-        Assert.That(response.Data.TotalCount, Is.EqualTo(25));
+        Assert.That(response.Data, Is.Not.Null);
+        Assert.That(response.Data!.TotalCount, Is.EqualTo(25));
         Assert.That(response.Data.CurrentPage, Is.EqualTo(1));
         Assert.That(response.Data.PageSize, Is.EqualTo(10));
         Assert.That(response.Data.TotalPages, Is.EqualTo(3));

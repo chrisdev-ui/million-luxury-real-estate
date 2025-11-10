@@ -10,6 +10,10 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Kestrel for Railway/Docker (dynamic PORT)
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5208";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -45,12 +49,15 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile(new AutoMapperProfile());
 });
 
-// CORS
+// CORS - Support dynamic origins from environment
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "https://localhost:3001")
+        var allowedOrigins = builder.Configuration["CorsOrigins"]?.Split(',')
+            ?? new[] { "http://localhost:3000", "https://localhost:3001" };
+
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -73,6 +80,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // Enable Swagger in production for Railway/Vercel
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+// Health check endpoint for Railway
+app.MapGet("/health", () => Results.Ok(new { status = "healthy", timestamp = DateTime.UtcNow }));
 
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");

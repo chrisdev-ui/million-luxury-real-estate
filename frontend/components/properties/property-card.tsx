@@ -25,7 +25,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-3 left-3 flex gap-2">
-            {Array.from({ length: 2 }, (_, i) => i + 1).map((_, index) => (
+            {badges.map((badge, index) => (
               <Badge
                 key={index}
                 variant="secondary"
@@ -35,7 +35,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
                     : "bg-blue-500 text-white hover:bg-blue-600 font-medium shadow-md"
                 }
               >
-                {badges[index]}
+                {badge}
               </Badge>
             ))}
           </div>

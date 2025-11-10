@@ -79,8 +79,13 @@ million-luxury-real-estate/
 │   │   └── MillionBackend.Infrastructure/ # Repository Implementations
 │   ├── tests/
 │   │   └── MillionBackend.Tests/    # Unit Tests (NUnit)
-│   ├── docker-compose.yml           # MongoDB container
-│   └── seed-data-heavy.js           # Sample data
+│   ├── postman/
+│   │   └── postman_collection.json  # Postman API collection
+│   ├── scripts/
+│   │   ├── seed-data.js             # Database seed (light)
+│   │   ├── seed-data-heavy.js       # Database seed (100 properties)
+│   │   └── clean-db.js              # Database cleanup script
+│   └── docker-compose.yml           # MongoDB container
 │
 ├── frontend/                         # Next.js 16 Application
 │   ├── app/                         # App Router pages
@@ -230,6 +235,24 @@ npm run dev
 
 - **Swagger UI:** `http://localhost:5208/swagger` (when API is running)
 - **Interactive:** Test all endpoints directly from the browser
+- **Postman Collection:** `backend/postman/postman_collection.json` - Import into Postman for API testing
+
+### Database Scripts
+
+Located in `backend/scripts/`:
+
+- **`seed-data.js`** - Light seed data (basic properties)
+- **`seed-data-heavy.js`** - Heavy seed data (100 properties for testing pagination)
+- **`clean-db.js`** - Clean/reset database
+
+**Usage:**
+```bash
+# Seed database with heavy data
+docker exec -i mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin < backend/scripts/seed-data-heavy.js
+
+# Clean database
+docker exec -i mongodb-milliontest mongosh -u admin -p admin123 --authenticationDatabase admin < backend/scripts/clean-db.js
+```
 
 ## 🏛️ Architecture
 

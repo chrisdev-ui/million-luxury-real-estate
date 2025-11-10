@@ -12,6 +12,7 @@
 
 - [Overview](#-overview)
 - [Features](#-features)
+- [Deployment](#-deployment)
 - [Project Structure](#-project-structure)
 - [Tech Stack](#-tech-stack)
 - [Quick Start](#-quick-start)
@@ -34,6 +35,7 @@ Million Luxury is a comprehensive real estate management platform that enables u
 - **Performance** - Optimized with server-side rendering, code splitting, and database indexing
 - **Real-time Filtering** - Debounced search with URL state synchronization
 - **Comprehensive Testing** - 18/18 unit tests passing
+- **Free Deployment** - Deploy to Vercel + Railway + MongoDB Atlas at no cost
 
 ## ✨ Features
 
@@ -65,6 +67,39 @@ Million Luxury is a comprehensive real estate management platform that enables u
 - ✅ **Mobile-First** - Touch-friendly responsive design
 - ✅ **SEO Optimized** - Server-side rendering with metadata
 - ✅ **Accessibility** - ARIA labels and semantic HTML
+
+## 🚀 Deployment
+
+### Free Tier Deployment (Recommended)
+
+Deploy your application for **FREE** using:
+
+- **Frontend**: [Vercel](https://vercel.com) - Free tier (100GB bandwidth/month)
+- **Backend**: [Railway.app](https://railway.app) - Free $5/month credit
+- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Free M0 tier (512MB)
+
+**Total Cost: $0/month** 🎉
+
+#### Quick Deploy (15 minutes)
+
+1. **Database**: Create MongoDB Atlas M0 cluster
+2. **Backend**: Deploy to Railway from GitHub
+3. **Frontend**: Deploy to Vercel from GitHub
+
+📖 **Full Instructions**: [FREE-DEPLOYMENT.md](FREE-DEPLOYMENT.md)
+⚡ **Quick Start**: [QUICKSTART-FREE.md](QUICKSTART-FREE.md)
+
+### Alternative: Azure Deployment
+
+For enterprise deployments, Azure configuration is also available:
+
+- **Frontend**: Azure Static Web Apps
+- **Backend**: Azure App Service
+- **Database**: Azure Cosmos DB (MongoDB API)
+
+**Estimated Cost: ~$20-30/month**
+
+📖 **Azure Guide**: [AZURE-QUICKSTART.md](AZURE-QUICKSTART.md)
 
 ## 🏗️ Project Structure
 

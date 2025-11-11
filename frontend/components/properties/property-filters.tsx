@@ -37,14 +37,32 @@ export function PropertyFilters() {
       maxPrice: filters.maxPrice || undefined,
     },
     validators: {
+      onChange: propertyFilterSchema,
       onSubmit: propertyFilterSchema,
     },
     onSubmit: async ({ value }) => {
+      // Auto-swap min and max if min is greater than max
+      let minPrice = value.minPrice || null;
+      let maxPrice = value.maxPrice || null;
+
+      if (
+        minPrice !== null &&
+        maxPrice !== null &&
+        minPrice > maxPrice
+      ) {
+        // Swap the values
+        [minPrice, maxPrice] = [maxPrice, minPrice];
+
+        // Update the form inputs with swapped values
+        form.setFieldValue("minPrice", minPrice);
+        form.setFieldValue("maxPrice", maxPrice);
+      }
+
       await setFilters({
         name: value.name || null,
         address: value.address || null,
-        minPrice: value.minPrice || null,
-        maxPrice: value.maxPrice || null,
+        minPrice,
+        maxPrice,
       });
     },
   });
@@ -161,7 +179,12 @@ export function PropertyFilters() {
                           const value = e.target.value;
                           const numValue =
                             value === "" ? undefined : Number(value);
-                          field.handleChange(numValue);
+                          // Prevent negative values
+                          if (numValue !== undefined && numValue < 0) {
+                            field.handleChange(0);
+                          } else {
+                            field.handleChange(numValue);
+                          }
                           handleDebouncedUpdate();
                         }}
                         aria-invalid={isInvalid}
@@ -196,7 +219,12 @@ export function PropertyFilters() {
                           const value = e.target.value;
                           const numValue =
                             value === "" ? undefined : Number(value);
-                          field.handleChange(numValue);
+                          // Prevent negative values
+                          if (numValue !== undefined && numValue < 0) {
+                            field.handleChange(0);
+                          } else {
+                            field.handleChange(numValue);
+                          }
                           handleDebouncedUpdate();
                         }}
                         aria-invalid={isInvalid}

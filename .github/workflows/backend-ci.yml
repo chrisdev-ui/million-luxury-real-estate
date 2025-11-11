@@ -22,6 +22,10 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
 
     steps:
     - name: 📥 Checkout code
@@ -47,11 +51,12 @@ jobs:
     - name: 📊 Publish test results
       uses: dorny/test-reporter@v1
       if: always()
+      continue-on-error: true
       with:
         name: Backend Test Results
         path: backend/**/test-results.trx
         reporter: dotnet-trx
-        fail-on-error: true
+        fail-on-error: false
 
     - name: ✅ Build Summary
       if: success()

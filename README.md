@@ -1,13 +1,17 @@
-# Million Luxury - Real Estate Management System
+<div align="center">
+  <img src="docs/assets/logo.webp" alt="Million Luxury Logo" width="200"/>
 
-> A production-ready, full-stack real estate property management application showcasing modern web development practices with .NET 9 and Next.js 16.
+  # Million Luxury - Real Estate Management System
 
-[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=.net)](https://dotnet.microsoft.com/)
-[![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js)](https://nextjs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47A248?logo=mongodb)](https://www.mongodb.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-success)](https://github.com/)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/chrisdev-ui/million-luxury-real-estate)
+  > A production-ready, full-stack real estate property management application showcasing modern web development practices with .NET 9 and Next.js 16.
+
+  [![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=.net)](https://dotnet.microsoft.com/)
+  [![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js)](https://nextjs.org/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47A248?logo=mongodb)](https://www.mongodb.com/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+  [![Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-success)](https://github.com/)
+  [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/chrisdev-ui/million-luxury-real-estate)
+</div>
 
 ## 📋 Table of Contents
 
@@ -27,8 +31,15 @@
 
 Million Luxury is a comprehensive real estate management platform that enables users to browse, filter, and explore luxury properties. Built with enterprise-grade architecture and modern web technologies, it demonstrates best practices in full-stack development.
 
+### 🚀 Live Demo
+
+- **Frontend:** [https://millionluxury.vercel.app](https://millionluxury.vercel.app)
+- **Backend API:** [https://millionluxury-api.azurewebsites.net](https://millionluxury-api.azurewebsites.net)
+- **API Documentation (Swagger):** [https://millionluxury-api.azurewebsites.net/swagger](https://millionluxury-api.azurewebsites.net/swagger)
+
 ### Key Highlights
 
+- **Production Ready** - Deployed on Azure (Backend) and Vercel (Frontend)
 - **Clean Architecture** - Separation of concerns with maintainable, testable code
 - **Modern UI/UX** - Responsive design with dark mode support
 - **Type Safety** - End-to-end TypeScript implementation
@@ -36,6 +47,7 @@ Million Luxury is a comprehensive real estate management platform that enables u
 - **Real-time Filtering** - Debounced search with URL state synchronization
 - **Comprehensive Testing** - 18/18 unit tests passing
 - **CI/CD Pipeline** - Automated testing and build validation
+- **Cloud Database** - MongoDB Atlas for production-ready data storage
 
 ## ✨ Features
 
@@ -456,6 +468,8 @@ npm run build       # Production build test
 
 ### MongoDB Collections
 
+**Production Database:** MongoDB Atlas
+
 **owners**
 
 - Stores property owner information
@@ -476,6 +490,13 @@ npm run build       # Production build test
 
 - Sales history and transactions
 - Relationship: Many-to-One with properties
+
+### Production Infrastructure
+
+- **Frontend:** Vercel (Next.js 16)
+- **Backend:** Azure App Service (B1 Basic tier, .NET 9)
+- **Database:** MongoDB Atlas (M0 Free tier)
+- **CI/CD:** GitHub Actions
 
 ## 🔧 Configuration
 

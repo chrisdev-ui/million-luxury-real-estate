@@ -21,6 +21,8 @@ const propertyFiltersParsers = {
   address: parseAsString.withDefault(""),
   minPrice: parseAsInteger,
   maxPrice: parseAsInteger,
+  page: parseAsInteger.withDefault(1),
+  pageSize: parseAsInteger.withDefault(10),
 };
 
 export function PropertyFilters() {
@@ -45,11 +47,7 @@ export function PropertyFilters() {
       let minPrice = value.minPrice || null;
       let maxPrice = value.maxPrice || null;
 
-      if (
-        minPrice !== null &&
-        maxPrice !== null &&
-        minPrice > maxPrice
-      ) {
+      if (minPrice !== null && maxPrice !== null && minPrice > maxPrice) {
         // Swap the values
         [minPrice, maxPrice] = [maxPrice, minPrice];
 
@@ -63,6 +61,8 @@ export function PropertyFilters() {
         address: value.address || null,
         minPrice,
         maxPrice,
+        page: null, // Reset to first page on new filter submit
+        pageSize: null, // Reset page size on new filter submit
       });
     },
   });
@@ -74,6 +74,8 @@ export function PropertyFilters() {
         address: values.address || null,
         minPrice: values.minPrice || null,
         maxPrice: values.maxPrice || null,
+        page: null, // Reset to first page on new filter submit
+        pageSize: null, // Reset page size on new filter submit
       });
     },
     500
@@ -91,6 +93,8 @@ export function PropertyFilters() {
       address: null,
       minPrice: null,
       maxPrice: null,
+      page: null,
+      pageSize: null,
     });
   };
 
